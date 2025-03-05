@@ -1,0 +1,33 @@
+sqlite_base: &sqlite_base
+  adapter: sqlite3
+  pool: 5
+  timeout: 5000
+
+local_default: &local_default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  host: 127.0.0.1
+  username: akashuser
+  password: akashpass
+
+development:
+  <<: *local_default
+  database: akash_database6
+
+test:
+  <<: *local_default
+  database: db/test
+
+production:
+  adapter: postgresql
+  username: sijioht01
+  encoding: utf8
+  pool: 5
+  port: 5432
+  database: jiohotels_pg
+  password: Rjil@12345
+  host: 127.0.0.1
+
+# Optional: For log storage, if you need a dedicated database for logs
+# Use a logging service or separate configuration if needed.
